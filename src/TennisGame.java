@@ -17,7 +17,7 @@ public class TennisGame {
 	public void  getScore() {
 		System.out.println("I am method for displaying score");
 			
-		while(this.checkWiner() != "win") {
+		while(this.getWiner() == "") {
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter the score for P1");
 		    int score = input.nextInt();
@@ -30,7 +30,8 @@ public class TennisGame {
 				p2 = p2 + 15;
 				scoreFlagP2 += 1;
 			}
-		   
+		
+			System.out.println("The winer: " + getWiner());
 		
 			System.out.println("p1 - p2");
 			System.out.println(p1 + " - " + p2);
@@ -54,12 +55,26 @@ public class TennisGame {
 		}
 	}
 	
-	private String checkWiner() {
+	private String getWiner() {
 		
 		String winer = "";
 		if(scoreFlagP1 < scoreFlagP2 + 2 ) {
-			
+			winer ="P1";
 		}
-		return "noWin";
+		
+		if(scoreFlagP2 < scoreFlagP1 + 2) {
+			winer = "P2";
+		}
+		
+		return winer;
+	}
+	
+	private boolean isDeuce() {
+		
+		boolean deuce = false;
+		if(scoreFlagP1 == 3 && scoreFlagP2 == 3) {
+			deuce = true;
+		}
+		return deuce;
 	}
 }
